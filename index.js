@@ -2,35 +2,34 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 const fileUpload = require("express-fileupload")
-const pool = require("./db")
 const fs=require('fs')
-// const user =require('./router/user.js')
-const bodyParser = require('body-parser');
-const path = require('path'); 
-app.use(fileUpload())
-app.use(cors())
-app.use(express.static("Images"))
-app.use(bodyParser.json());
+const nodemailer =require("nodemailer")
+const transporter = nodemailer.createTransport({
+   service: "gmail",
+   auth: {
+      user: "webabbas9@gmail.com",
+      pass: "hftxvfnsdklodkwh"
+   }
+});
 
-// app.get('/verify/:token', (req, res)=>{
-//     const {token} = req.params;
-//     jwt.verify(token, 'ourSecretKey', function(err, decoded) {
-//         if (err) {
-//             console.log(err);
-//             res.send("Email verification failed,possibly the link is invalid or expired");
-//         }
-//         else {
-//             res.send("Email verifified successfully");
-//         }
-//     });
-// });
+const mailOptions = {
+   from: "webabbas9@gmail.com",
+   to: "nodirbeklider12@gmail.com",
+   subject: "Nodemailer Test",
+   html: "Test <button>sending</button> Gmail using Node JS"
+};
 
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname, '/doc.html'));
-//   });
-  
+transporter.sendMail(mailOptions, function(error, info){
+   if(error){
+      console.log(error,"error");
+   }else{
+      console.log("Email sent: " + info.response);
+
+   }
+});
+
 //  app.use("/auth" , user )
-app.listen(5000, () => {
+app.listen(5001, () => {
     console.log("Localhost is Running");
 })
 
