@@ -10,7 +10,7 @@ CREATE TABLE users(
  )
 CREATE TABLE product(
     "id" serial primary key,
-    "price" integer NOT NULL,
+    "product" integer NOT NULL,
     "title" TEXT  NOT NULL,
     "dell" integer  NOT NULL,
     "description" TEXT  NOT NULL,

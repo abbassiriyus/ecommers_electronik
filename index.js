@@ -4,6 +4,7 @@ const cors = require("cors")
 const fileUpload = require("express-fileupload")
 const fs=require('fs')
 const nodemailer =require("nodemailer")
+const product=require('./routes/product')
 const transporter = nodemailer.createTransport({
    service: "gmail",
    auth: {
@@ -29,7 +30,9 @@ transporter.sendMail(mailOptions, function(error, info){
 });
 
 //  app.use("/auth" , user )
+app.use("/api",product)
 app.listen(5001, () => {
+
     console.log("Localhost is Running");
 })
 
