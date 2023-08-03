@@ -5,8 +5,8 @@ var jwt = require('jsonwebtoken');
 const pool = require("../db")
 
 
-router.get("/product", (req, res) => {   
-    pool.query("SELECT * FROM product", (err, result) => {
+router.get("/img", (req, res) => {   
+    pool.query("SELECT * FROM img", (err, result) => {
         if (!err) {
 
             res.status(200).send(result.rows)
@@ -17,9 +17,9 @@ router.get("/product", (req, res) => {
     })
 })
 
-router.get('/product/:id', (req, res) => {
+router.get('/img/:id', (req, res) => {
     
-    pool.query("SELECT * FROM product where id=$1", [req.params.id ], (err, result) => {
+    pool.query("SELECT * FROM img where id=$1", [req.params.id ], (err, result) => {
         if (!err) {
             res.status(200).send(result.rows)
         } else {
@@ -29,10 +29,10 @@ router.get('/product/:id', (req, res) => {
 })
 
 
-router.post("/product",(req, res) => {
+router.post("/img",(req, res) => {
     const body = req.body;
-        pool.query('INSERT INTO product (product) VALUES ($1) RETURNING *',
-        [body.product],
+        pool.query('INSERT INTO img (product) VALUES ($1) RETURNING *',
+        [body.img],
 
          (err, result) => {
             if (err) {
@@ -43,9 +43,9 @@ router.post("/product",(req, res) => {
         });
 });
 
-router.delete("/product/:id",(req, res) => {
+router.delete("/img/:id",(req, res) => {
     const id = req.params.id
-    pool.query('DELETE FROM product WHERE id = $1', [id], (err, result) => {
+    pool.query('DELETE FROM img WHERE id = $1', [id], (err, result) => {
         if (err) {
             res.status(400).send(err)
         } else {
@@ -53,12 +53,12 @@ router.delete("/product/:id",(req, res) => {
         }
     })
 })
-router.put("/product/:id", (req, res) => {
+router.put("/img/:id", (req, res) => {
     const id = req.params.id
     const body = req.body
     pool.query(
-        'UPDATE product SET product=$1    WHERE id = $2',
-        [body.product,id ],
+        'UPDATE product SET img=$1    WHERE id = $2',
+        [body.img,id ],
         (err, result) => {
             if (err) {
                 res.status(400).send(err)
@@ -68,7 +68,5 @@ router.put("/product/:id", (req, res) => {
         }
     )
 })
-
-
 
 module.exports = router;
