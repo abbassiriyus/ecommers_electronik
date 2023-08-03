@@ -19,7 +19,7 @@ router.get("/product", (req, res) => {
 
 router.get('/product/:id', (req, res) => {
     
-    pool.query("SELECT * FROM product where id=$1", [req.params.id], (err, result) => {
+    pool.query("SELECT * FROM product where id=$1", [req.params.id ], (err, result) => {
         if (!err) {
             res.status(200).send(result.rows)
         } else {
