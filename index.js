@@ -6,6 +6,7 @@ const fs=require('fs')
 const nodemailer =require("nodemailer")
 const product=require('./router/product')
 const img=require('./router/img')
+const tegs=require('./router/tegs')
 const transporter = nodemailer.createTransport({
    service: "gmail",
    auth: {
@@ -33,6 +34,8 @@ transporter.sendMail(mailOptions, function(error, info){
 //  app.use("/auth" , user )
 app.use("/api",product)
 app.use("/api",img)
+app.use("/api",tegs)
+
 app.listen(5001, () => {
 
     console.log("Localhost is Running");
