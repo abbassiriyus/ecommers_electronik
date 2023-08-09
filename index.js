@@ -8,6 +8,7 @@ const product=require('./router/product')
 const img=require('./router/img')
 const tegs=require('./router/tegs')
 const product_tegs=require('./router/product_tegs')
+const product_tegs=require('./router/buy_product')
 const transporter = nodemailer.createTransport({
    service: "gmail",
    auth: {
