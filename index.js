@@ -8,7 +8,7 @@ const product=require('./router/product')
 const img=require('./router/img')
 const tegs=require('./router/tegs')
 const product_tegs=require('./router/product_tegs')
-const product_tegs=require('./router/buy_product')
+const buy_product=require('./router/buy_product')
 const transporter = nodemailer.createTransport({
    service: "gmail",
    auth: {
@@ -38,9 +38,8 @@ app.use("/api",product)
 app.use("/api",img)
 app.use("/api",tegs)
 app.use("/api",product_tegs)
-
+app.use("/api",buy_product)
 app.listen(5001, () => {
-
     console.log("Localhost is Running");
 })
 
