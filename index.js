@@ -7,6 +7,7 @@ const nodemailer =require("nodemailer")
 const product=require('./router/product')
 const img=require('./router/img')
 const tegs=require('./router/tegs')
+const product_tegs=require('./router/product_tegs')
 const transporter = nodemailer.createTransport({
    service: "gmail",
    auth: {
@@ -35,6 +36,7 @@ transporter.sendMail(mailOptions, function(error, info){
 app.use("/api",product)
 app.use("/api",img)
 app.use("/api",tegs)
+app.use("/api",product_tegs)
 
 app.listen(5001, () => {
 
